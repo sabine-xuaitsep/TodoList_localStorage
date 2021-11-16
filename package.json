@@ -1,0 +1,22 @@
+{
+  "name": "todolist_localstorage",
+  "version": "1.0.0",
+  "description": "TodoList_localStorage",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "parcel serve src/index.html",
+    "build": "parcel build src/index.html --public-url ./",
+    "clean": "rmdir dist .cache /s /q"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sabine-xuaitsep/TodoList_localStorage.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sabine-xuaitsep/TodoList_localStorage/issues"
+  },
+  "homepage": "https://github.com/sabine-xuaitsep/TodoList_localStorage#readme"
+}
