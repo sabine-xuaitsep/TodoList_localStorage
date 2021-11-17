@@ -1,7 +1,7 @@
 import "./todoList.css";
 import { DB } from "../../services/DB";
-import { getTodoListTemplate } from "./todoListTemplate";
 import { Todo } from "../Todo/Todo";
+import { getTodoListTemplate } from "./todoListTemplate";
 
 export class TodoList {
   constructor(data) {
