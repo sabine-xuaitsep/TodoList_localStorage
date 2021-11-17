@@ -24,6 +24,9 @@ export class Todo {
     this.toggleBtn.onclick = () => {
       this.toggleCompleted();
     }
+    this.el.querySelector(".destroy").onclick = () => {
+      this.delete();
+    }
   }
   toggleCompleted() {
     this.completed = !this.completed;
@@ -33,6 +36,12 @@ export class Todo {
     this.completed 
       ? this.toggleBtn.setAttribute("checked", "checked") 
       : this.toggleBtn.removeAttribute("checked");
+    this.parent.setUncompletedCount();
+  }
+  delete() {
+    this.el.remove();
+    DB.deleteOne(this.id);
+    this.parent.todos = this.parent.todos.filter((todo) => todo !== this);
     this.parent.setUncompletedCount();
   }
 }

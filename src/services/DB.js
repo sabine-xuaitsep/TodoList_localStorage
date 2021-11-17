@@ -20,5 +20,10 @@ export const DB = {
       }
     });
     localStorage.todos = JSON.stringify(todos);
+  },
+  deleteOne(id) {
+    let todos = JSON.parse(localStorage.todos);
+    todos = todos.filter((todo) => todo.id !== id);
+    localStorage.todos = JSON.stringify(todos);
   }
 };
