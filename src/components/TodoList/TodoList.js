@@ -25,6 +25,7 @@ export class TodoList {
     this.todos.forEach((todo) => {
       todo.render();
     });
+    this.setUncompletedCount();
     this.activateEl();
   }
   catchEl() {
@@ -37,6 +38,13 @@ export class TodoList {
         this.addOne();
       }
     };
+  }
+  setUncompletedCount() {
+    const uncompletedCount = this.todos.filter((todo) => !todo.completed).length;
+    this.el.querySelector(".todo-count").innerHTML = `
+      <strong>${uncompletedCount}</strong> 
+      item${uncompletedCount !== 1 ? "s": ""} left
+      `;
   }
   addOne() {
     const todo = { 
