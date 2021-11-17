@@ -7,9 +7,9 @@ export class Todo {
     this.content = data.todo.content;
     this.completed = data.todo.completed;
   }
-  render(el) {
+  render() {
     const todo = document.createElement("div");
-    el.append(todo);
+    this.parent.todoListEl.append(todo);
     todo.outerHTML = getTodoTemplate(this);
   }
 }
