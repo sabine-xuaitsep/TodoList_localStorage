@@ -28,6 +28,7 @@ export class TodoList {
     this.todos.forEach((todo) => {
       todo.render();
     });
+    this.isHiddenSection();
     this.isHiddenBtn();
     this.setUncompletedCount();
     this.activateEl();
@@ -59,11 +60,15 @@ export class TodoList {
       };
     });
   }
+  isHiddenSection() {
+    this.el.querySelector(".main").style.display =
+      this.todos.length === 0 ? "none" : "block";
+    this.el.querySelector(".footer").style.display =
+      this.todos.length === 0 ? "none" : "block";
+  }
   isHiddenBtn() {
     this.clearCompletedBtn.style.display = 
-      this.todos.some((todo) => todo.completed)
-        ? "block"
-        : "none";
+      this.todos.some((todo) => todo.completed) ? "block" : "none";
   }
   setUncompletedCount() {
     const uncompletedCount = this.todos.filter((todo) => !todo.completed).length;
@@ -83,6 +88,7 @@ export class TodoList {
     this.todos.push(newTodo);
     newTodo.render();
     this.newTodoEl.value = "";
+    this.isHiddenSection();
     this.setUncompletedCount();
   }
   deleteCompleted() {

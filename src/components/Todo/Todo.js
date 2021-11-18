@@ -51,6 +51,7 @@ export class Todo {
     this.el.remove();
     DB.deleteOne(this.id);
     this.parent.todos = this.parent.todos.filter((todo) => todo !== this);
+    this.parent.isHiddenSection();
     this.parent.isHiddenBtn();
     this.parent.setUncompletedCount();
   }
