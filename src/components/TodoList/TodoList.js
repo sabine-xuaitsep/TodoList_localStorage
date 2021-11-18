@@ -38,6 +38,9 @@ export class TodoList {
         this.addOne();
       }
     };
+    this.el.querySelector(".clear-completed").onclick = () => {
+      this.deleteCompleted();
+    };
   }
   setUncompletedCount() {
     const uncompletedCount = this.todos.filter((todo) => !todo.completed).length;
@@ -57,5 +60,13 @@ export class TodoList {
     this.todos.push(newTodo);
     newTodo.render();
     this.newTodoEl.value = "";
+    this.setUncompletedCount();
+  }
+  deleteCompleted() {
+    this.todos.forEach((todo) => {
+      if(todo.completed) {
+        todo.delete();
+      }
+    });
   }
 }
