@@ -9,6 +9,8 @@ export class TodoList {
     this.el = document.querySelector(data.el);
     this.todoListEl = null;
     this.newTodoEl = null;
+    this.filterLinks = null;
+    this.selectedFilter = null;
     this.todos = [];
     this.loadTodos();
   }
@@ -31,6 +33,7 @@ export class TodoList {
   catchEl() {
     this.todoListEl = this.el.querySelector(".todo-list");
     this.newTodoEl = this.el.querySelector(".new-todo");
+    this.filterLinks = this.el.querySelectorAll(".filters li a");
   }
   activateEl() {
     this.newTodoEl.onkeyup = (e) => {
@@ -46,6 +49,12 @@ export class TodoList {
     this.el.querySelector(".toggle-all").onclick = () => {
       this.completeAll();
     };
+    this.filterLinks.forEach((filter) => {
+      filter.onclick = (e) => {
+        e.preventDefault();
+        this.filter(filter);
+      };
+    });
   }
   setUncompletedCount() {
     const uncompletedCount = this.todos.filter((todo) => !todo.completed).length;
@@ -79,6 +88,27 @@ export class TodoList {
       if(!todo.completed) {
         todo.toggleCompleted();
       }
+    });
+  }
+  filter(el) {
+    this.selectedFilter = el.href.split("#/")[1];
+    this.todos.forEach((todo) => {
+      switch (this.selectedFilter) {
+        case "active":
+          todo.el.style.display = !todo.completed ? "block" : "none";
+          break;
+        case "completed":
+          todo.el.style.display = todo.completed ? "block" : "none";
+          break;
+        default:
+          todo.el.style.display = "block";
+          break;
+      }
+    });
+    this.filterLinks.forEach((filter) => {
+      filter === el
+        ? filter.classList.add("selected")
+        : filter.classList.remove("selected");
     });
   }
 }
