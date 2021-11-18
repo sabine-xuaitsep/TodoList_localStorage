@@ -35,7 +35,9 @@ export class TodoList {
   activateEl() {
     this.newTodoEl.onkeyup = (e) => {
       if(e.key === "Enter") {
-        this.addOne();
+        if(this.newTodoEl.value !== "") {
+          this.addOne();
+        }
       }
     };
     this.el.querySelector(".clear-completed").onclick = () => {
