@@ -16,7 +16,12 @@ export const DB = {
     const todos = JSON.parse(localStorage.todos);
     todos.forEach((todo) => {
       if(todo.id === data.id) {
-        todo.completed = data.completed;
+        if(todo.completed !== data.completed) {
+          todo.completed = data.completed;
+        }
+        if(todo.content !== data.content) {
+          todo.content = data.content;
+        }
       }
     });
     localStorage.todos = JSON.stringify(todos);
