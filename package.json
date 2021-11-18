@@ -18,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/sabine-xuaitsep/TodoList_localStorage/issues"
   },
-  "homepage": "https://github.com/sabine-xuaitsep/TodoList_localStorage#readme"
+  "homepage": "https://github.com/sabine-xuaitsep/TodoList_localStorage#readme",
+  "devDependencies": {
+    "cssnano": "^4.1.11",
+    "postcss": "^8.3.11"
+  }
 }
