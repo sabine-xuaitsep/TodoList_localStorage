@@ -8,7 +8,9 @@ export function getTodoTemplate(data) {
           type="checkbox" 
           ${data.completed ? "checked='checked'" : ""} 
         />
-        <label>${data.content}</label>
+        <label>
+          ${data.content.replace(/</g, "&lt;").replace(/>/g, "&gt;")}
+        </label>
         <button class="destroy"></button>
       </div>
       <input class="edit" value="Edit this todo" />
