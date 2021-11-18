@@ -9,6 +9,7 @@ export class TodoList {
     this.el = document.querySelector(data.el);
     this.todoListEl = null;
     this.newTodoEl = null;
+    this.clearCompletedBtn = null;
     this.filterLinks = null;
     this.selectedFilter = null;
     this.todos = [];
@@ -27,12 +28,14 @@ export class TodoList {
     this.todos.forEach((todo) => {
       todo.render();
     });
+    this.isHiddenBtn();
     this.setUncompletedCount();
     this.activateEl();
   }
   catchEl() {
     this.todoListEl = this.el.querySelector(".todo-list");
     this.newTodoEl = this.el.querySelector(".new-todo");
+    this.clearCompletedBtn = this.el.querySelector(".clear-completed");
     this.filterLinks = this.el.querySelectorAll(".filters li a");
   }
   activateEl() {
@@ -43,7 +46,7 @@ export class TodoList {
         }
       }
     };
-    this.el.querySelector(".clear-completed").onclick = () => {
+    this.clearCompletedBtn.onclick = () => {
       this.deleteCompleted();
     };
     this.el.querySelector(".toggle-all").onclick = () => {
@@ -55,6 +58,12 @@ export class TodoList {
         this.filter(filter);
       };
     });
+  }
+  isHiddenBtn() {
+    this.clearCompletedBtn.style.display = 
+      this.todos.some((todo) => todo.completed)
+        ? "block"
+        : "none";
   }
   setUncompletedCount() {
     const uncompletedCount = this.todos.filter((todo) => !todo.completed).length;
