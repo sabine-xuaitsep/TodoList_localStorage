@@ -79,7 +79,7 @@ export class TodoList {
   }
   addOne() {
     const todo = { 
-      id: (this.todos.at(-1).id) + 1, 
+      id: this.todos.length === 0 ? 1 : (this.todos.at(-1).id) + 1, 
       content: this.newTodoEl.value, 
       completed: false 
     };
