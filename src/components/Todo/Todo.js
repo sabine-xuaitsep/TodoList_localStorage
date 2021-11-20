@@ -35,6 +35,16 @@ export class Todo {
     this.contentEl.ondblclick = () => {
       this.editContent();
     };
+    this.editEl.onblur = () => {
+      this.editEl.value === "" || this.editEl.value === this.content 
+        ? this.abortEdition()
+        : this.updateContent();
+    };
+    this.editEl.onkeyup = (e) => {
+      if(e.key === "Enter" && this.editEl.value !== "" && this.editEl.value !== this.content) {
+        this.updateContent();
+      }
+    };
   }
   toggleCompleted() {
     this.completed = !this.completed;
@@ -59,19 +69,14 @@ export class Todo {
     this.editEl.value = this.content;
     this.el.classList.add("editing");
     this.editEl.focus();
-    this.editEl.onblur = () => {
-      this.updateContent();
-    };
-    this.editEl.onkeyup = (e) => {
-      if(e.key === "Enter") {
-        this.updateContent();
-      }
-    };
   }
   updateContent() {
    this.content = this.editEl.value;
    DB.updateOne(this);
    this.contentEl.innerText = this.content;
    this.el.classList.remove("editing");
+  }
+  abortEdition() {
+    this.el.classList.remove("editing");
   }
 }
